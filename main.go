@@ -1,8 +1,11 @@
 package main
 
 import (
+	"adriano-go/models"
+	"html/template"
 	"net/http"
-	"text/template"
+
+	"github.com/alura/models"
 )
 
 var temp = template.Must(template.ParseGlob("templates/*.html"))
@@ -13,5 +16,7 @@ func main() {
 }
 
 func index(w http.ResponseWriter, r *http.Request) {
-	temp.ExecuteTemplate(w, "Index", nil)
+	todosOsProdutos := models.BuscaTodosOsProdutos
+	temp.ExecuteTemplate(w, "Index", todosOsProdutos)
+
 }
